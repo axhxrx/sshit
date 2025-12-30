@@ -1,0 +1,30 @@
+{
+  "version": "1.0",
+  "timestamp": "2025-10-26T03:09:04.129Z",
+  "events": [
+    {
+      "timestamp": 1093,
+      "data": "\u001b[B"
+    },
+    {
+      "timestamp": 1558,
+      "data": "\u001b[A"
+    },
+    {
+      "timestamp": 2005,
+      "data": "\r"
+    },
+    {
+      "timestamp": 3807,
+      "data": "k"
+    },
+    {
+      "timestamp": 4566,
+      "data": "\u001b[B"
+    },
+    {
+      "timestamp": 4991,
+      "data": "\r"
+    }
+  ]
+}

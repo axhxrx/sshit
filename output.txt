@@ -1,0 +1,254 @@
+⚠️ Ignoring unknown args: []
+{ opRunner: { mode: "interactive" }, app: {} }
+                               SSH Tunnel Manager
+ butt                                 butt                                 butt
+
+  > Add SSH tunnel    connect a local port to a port on a remote host
+    Quit              Quit the program
+
+ ass
+ hat
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G                               SSH Tunnel Manager
+ butt                                 butt                                 butt
+
+  > Add SSH tunnel    connect a local port to a port on a remote host
+    Quit              Quit the program
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ ass
+ hat
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G                               SSH Tunnel Manager
+ butt                                 butt                                 butt
+
+    Add SSH tunnel    connect a local port to a port on a remote host
+  > Quit              Quit the program
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ ass
+ hat
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G                               SSH Tunnel Manager
+ butt                                 butt                                 butt
+
+  > Add SSH tunnel    connect a local port to a port on a remote host
+    Quit              Quit the program
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ ass
+ hat
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[GSelected: Add SSH tunnel
+                               SSH Tunnel Manager
+ butt                                 butt                                 butt
+
+  > Add SSH tunnel    connect a local port to a port on a remote host
+    Quit              Quit the program
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ ass
+ hat
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[GSelected: Add SSH tunnel
+                               SSH Tunnel Manager
+ butt                                 butt                                 butt
+
+  > Add SSH tunnel    connect a local port to a port on a remote host
+    Quit              Quit the program
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ ass
+ hat
+{ ok: true, value: "Add SSH tunnel" }
+NOT YET IMPLEMENTED
+
+(sorry!)
+
+
+
+(Press any key to continue...)
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[GUser pressed key - dismissing markdown
+NOT YET IMPLEMENTED
+
+(sorry!)
+
+
+
+(Press any key to continue...)
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[GMarkdown dismissed
+NOT YET IMPLEMENTED
+
+(sorry!)
+
+
+
+(Press any key to continue...)
+                               SSH Tunnel Manager
+ butt                                 butt                                 butt
+
+  > Add SSH tunnel    connect a local port to a port on a remote host
+    Quit              Quit the program
+
+ ass
+ hat
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G                               SSH Tunnel Manager
+ butt                                 butt                                 butt
+
+  > Add SSH tunnel    connect a local port to a port on a remote host
+    Quit              Quit the program
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ ass
+ hat
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G                               SSH Tunnel Manager
+ butt                                 butt                                 butt
+
+    Add SSH tunnel    connect a local port to a port on a remote host
+  > Quit              Quit the program
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ ass
+ hat
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[GSelected: Quit
+                               SSH Tunnel Manager
+ butt                                 butt                                 butt
+
+    Add SSH tunnel    connect a local port to a port on a remote host
+  > Quit              Quit the program
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ ass
+ hat
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[GSelected: Quit
+                               SSH Tunnel Manager
+ butt                                 butt                                 butt
+
+    Add SSH tunnel    connect a local port to a port on a remote host
+  > Quit              Quit the program
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ ass
+ hat
+{ ok: true, value: "Quit" }
