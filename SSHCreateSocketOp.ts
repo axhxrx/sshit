@@ -122,7 +122,12 @@ export class SSHCreateSocketOp extends Op
       {
         return this.fail('HostNotFound', stderr);
       }
-      if (stderr.includes('Connection refused'))
+      if (
+        stderr.includes('Connection refused')
+        || stderr.includes('Network is unreachable')
+        || stderr.includes('No route to host')
+        || stderr.includes('Broken pipe')
+      )
       {
         return this.fail('ConnectionRefused', stderr);
       }
