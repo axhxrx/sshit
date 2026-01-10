@@ -109,3 +109,15 @@ bun --hot ./index.ts
 ```
 
 For more information, read the Bun API docs in `node_modules/bun-types/docs/**.mdx`.
+
+## Cross-Runtime Design
+
+**IMPORTANT**: This project intentionally uses Node.js APIs (`node:child_process`, `node:buffer`, `node:fs/promises`) for cross-runtime compatibility with Bun, Deno, and Node.js.
+
+Despite the shebang using `#!/usr/bin/env bun`, the code is designed to work across all three runtimes. This is intentional, not an oversight:
+
+- Use `spawn` from `node:child_process` (not `Bun.$`)
+- Use `Buffer` from `node:buffer` (not Bun-specific buffer handling)
+- Use `stat` from `node:fs/promises` (not `Bun.file`)
+
+The shared utilities in `sshit-internals.ts` document this cross-runtime compatibility in their JSDoc comments.
