@@ -152,36 +152,36 @@ export class SSHCreateSocketOp extends Op
 
       if (stderr.includes('Permission denied') || stderr.includes('Authentication failed'))
       {
-        return this.fail('AuthenticationFailed' as const, stderr);
+        return this.fail('AuthenticationFailed', stderr);
       }
       if (stderr.includes('REMOTE HOST IDENTIFICATION HAS CHANGED') || stderr.includes('Host key verification failed'))
       {
-        return this.fail('HostKeyVerificationFailed' as const, stderr);
+        return this.fail('HostKeyVerificationFailed', stderr);
       }
       if (stderr.includes('Could not resolve hostname') || stderr.includes('Name or service not known'))
       {
-        return this.fail('HostNotFound' as const, stderr);
+        return this.fail('HostNotFound', stderr);
       }
       if (stderr.includes('Connection refused'))
       {
-        return this.fail('ConnectionRefused' as const, stderr);
+        return this.fail('ConnectionRefused', stderr);
       }
       if (stderr.includes('Operation timed out') || stderr.includes('Connection timed out'))
       {
-        return this.fail('Timeout' as const, stderr);
+        return this.fail('Timeout', stderr);
       }
       if (stderr.includes('Permission denied (publickey'))
       {
-        return this.fail('PermissionDenied' as const, stderr);
+        return this.fail('PermissionDenied', stderr);
       }
 
-      return this.fail('UnknownError' as const, `Exit code ${result.exitCode}: ${stderr}`);
+      return this.fail('UnknownError', `Exit code ${result.exitCode}: ${stderr}`);
     }
     catch (error: unknown)
     {
       const message = error instanceof Error ? error.message : String(error);
       this.error(io, `Exception: ${message}`);
-      return this.fail('UnknownError' as const, message);
+      return this.fail('UnknownError', message);
     }
   }
 }

@@ -101,7 +101,7 @@ export class SSHCheckSocketOp extends Op
       }
       catch
       {
-        return this.fail('SocketNotFound' as const, `Control socket does not exist: ${this.socketPath}`);
+        return this.fail('SocketNotFound', `Control socket does not exist: ${this.socketPath}`);
       }
 
       this.log(io, `Checking socket health: ${this.socketPath}`);
@@ -118,18 +118,18 @@ export class SSHCheckSocketOp extends Op
       if (result.exitCode === 0)
       {
         this.log(io, 'Socket is alive');
-        return this.succeed('alive' as const);
+        return this.succeed('alive');
       }
 
       // Socket file exists but master is dead
       this.log(io, 'Socket is dead');
-      return this.succeed('dead' as const);
+      return this.succeed('dead');
     }
     catch (error: unknown)
     {
       const message = error instanceof Error ? error.message : String(error);
       this.error(io, `Exception: ${message}`);
-      return this.fail('UnknownError' as const, message);
+      return this.fail('UnknownError', message);
     }
   }
 }

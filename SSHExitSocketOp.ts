@@ -96,7 +96,7 @@ export class SSHExitSocketOp extends Op
       }
       catch
       {
-        return this.fail('SocketNotFound' as const, `Control socket does not exist: ${this.socketPath}`);
+        return this.fail('SocketNotFound', `Control socket does not exist: ${this.socketPath}`);
       }
 
       this.log(io, `Requesting socket exit: ${this.socketPath}`);
@@ -118,7 +118,7 @@ export class SSHExitSocketOp extends Op
     {
       const message = error instanceof Error ? error.message : String(error);
       this.error(io, `Exception: ${message}`);
-      return this.fail('UnknownError' as const, message);
+      return this.fail('UnknownError', message);
     }
   }
 }

@@ -130,7 +130,7 @@ export class SSHExecOp extends Op
       }
       catch
       {
-        return this.fail('SocketNotFound' as const, `Control socket does not exist: ${this.socketPath}`);
+        return this.fail('SocketNotFound', `Control socket does not exist: ${this.socketPath}`);
       }
 
       this.log(io, `Executing on ${this.host} via ${this.socketPath}: ${this.command}`);
@@ -155,22 +155,22 @@ export class SSHExecOp extends Op
       {
         if (stderr.includes('No such file') || stderr.includes('no such file'))
         {
-          return this.fail('SocketNotFound' as const, stderr);
+          return this.fail('SocketNotFound', stderr);
         }
         if (stderr.includes('Connection refused') || stderr.includes('Connection reset'))
         {
-          return this.fail('ConnectionFailed' as const, stderr);
+          return this.fail('ConnectionFailed', stderr);
         }
         if (stderr.includes('Operation timed out') || stderr.includes('Connection timed out'))
         {
-          return this.fail('Timeout' as const, stderr);
+          return this.fail('Timeout', stderr);
         }
         if (stderr.includes('Control socket') && stderr.includes('dead'))
         {
-          return this.fail('SocketDead' as const, stderr);
+          return this.fail('SocketDead', stderr);
         }
         // Other 255 errors - likely socket issues
-        return this.fail('ConnectionFailed' as const, `Exit 255: ${stderr}`);
+        return this.fail('ConnectionFailed', `Exit 255: ${stderr}`);
       }
 
       // Non-255 exit codes are command results (success or command failure)
@@ -189,7 +189,7 @@ export class SSHExecOp extends Op
     {
       const message = error instanceof Error ? error.message : String(error);
       this.error(io, `Exception: ${message}`);
-      return this.fail('UnknownError' as const, message);
+      return this.fail('UnknownError', message);
     }
   }
 }
