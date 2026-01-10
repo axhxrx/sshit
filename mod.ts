@@ -1,3 +1,6 @@
-if (import.meta.main) {
-  console.log("Hello, this is @axhxrx/sshit");
+import { main } from './main.ts';
+
+if (import.meta.main)
+{
+  await main();
 }

@@ -1,0 +1,13 @@
+{
+  "name": "sshit",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@axhxrx/ops": "workspace:*"
+  }
+}
