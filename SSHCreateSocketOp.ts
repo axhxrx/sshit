@@ -58,6 +58,8 @@ export class SSHCreateSocketOp extends Op
     this.serverAliveInterval = serverAliveInterval;
   }
 
+  // TODO: Socket path in /tmp is world-readable directory — consider using
+  // $XDG_RUNTIME_DIR or ~/.ssh/sockets/
   #getSocketPath(): string
   {
     if (this.socketPath) return this.socketPath;

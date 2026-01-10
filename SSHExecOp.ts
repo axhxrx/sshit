@@ -1,7 +1,7 @@
 #!/usr/bin/env bun
 import { Op } from '@axhxrx/ops';
 import type { Failure, IOContext, Success } from '@axhxrx/ops';
-import { Buffer } from 'node:buffer';
+import type { Buffer } from 'node:buffer';
 import { stat } from 'node:fs/promises';
 import process from 'node:process';
 import { parseArgs } from 'node:util';
@@ -260,9 +260,12 @@ if (import.meta.main)
 
   // In JSON mode, suppress logging by passing a silent IOContext
   const silentLogger = {
-    log: () => {},
-    warn: () => {},
-    error: () => {},
+    log: () =>
+    {},
+    warn: () =>
+    {},
+    error: () =>
+    {},
     child: () => silentLogger,
     getNamespace: () => undefined,
   };
