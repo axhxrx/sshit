@@ -155,15 +155,19 @@ if (import.meta.main)
       host: { type: 'string', short: 'h' },
       socket: { type: 'string', short: 's' },
       timeout: { type: 'string', short: 't' },
+      json: { type: 'boolean', short: 'j', default: false },
     },
     allowPositionals: true,
   });
+
+  const jsonOutput = values.json ?? false;
 
   const host = values.host ?? positionals[0];
   if (!host)
   {
     console.error('Usage: ./SSHCreateSocketOp.ts <host>');
     console.error('       ./SSHCreateSocketOp.ts --host user@10.0.0.3 --socket /tmp/my-socket');
+    console.error('       ./SSHCreateSocketOp.ts ... --json');
     process.exit(1);
   }
 
@@ -173,20 +177,69 @@ if (import.meta.main)
     values.timeout ? parseInt(values.timeout, 10) : undefined,
   );
 
-  const outcome = await op.run();
+  // Silent logger for JSON mode
+  const silentLogger = {
+    log: () => {},
+    warn: () => {},
+    error: () => {},
+    child: () => silentLogger,
+    getNamespace: () => undefined,
+  };
 
-  if (outcome.ok)
+  const silentIO = {
+    stdin: process.stdin,
+    stdout: process.stdout,
+    mode: 'interactive' as const,
+    logger: silentLogger,
+  } as unknown as IOContext;
+
+  const startedAt = Date.now();
+  const outcome = await op.run(jsonOutput ? silentIO : undefined);
+  const endedAt = Date.now();
+
+  if (jsonOutput)
   {
-    console.log('\n✅ Socket created successfully:');
-    console.log(JSON.stringify(outcome.value, null, 2));
+    if (outcome.ok)
+    {
+      console.log(JSON.stringify({
+        ok: true,
+        host,
+        socket: outcome.value.path,
+        createdAt: outcome.value.createdAt,
+        startedAt,
+        endedAt,
+        elapsedMilliseconds: endedAt - startedAt,
+      }, null, 2));
+    }
+    else
+    {
+      console.log(JSON.stringify({
+        ok: false,
+        host,
+        failure: outcome.failure,
+        debugData: outcome.debugData,
+        startedAt,
+        endedAt,
+        elapsedMilliseconds: endedAt - startedAt,
+      }, null, 2));
+      process.exit(1);
+    }
   }
   else
   {
-    console.error(`\n❌ Failed: ${outcome.failure}`);
-    if (outcome.debugData)
+    if (outcome.ok)
     {
-      console.error(outcome.debugData);
+      console.log('\n✅ Socket created successfully:');
+      console.log(JSON.stringify(outcome.value, null, 2));
     }
-    process.exit(1);
+    else
+    {
+      console.error(`\n❌ Failed: ${outcome.failure}`);
+      if (outcome.debugData)
+      {
+        console.error(outcome.debugData);
+      }
+      process.exit(1);
+    }
   }
 }
