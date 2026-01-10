@@ -1,65 +1,20 @@
 #!/usr/bin/env bun
 import { Op } from '@axhxrx/ops';
 import type { Failure, IOContext, Success } from '@axhxrx/ops';
-import { Buffer } from 'node:buffer';
-import { spawn } from 'node:child_process';
 import { stat } from 'node:fs/promises';
 import process from 'node:process';
 import { parseArgs } from 'node:util';
+
+import { runCommand } from './sshit-internals.ts';
 
 /**
  Status of an SSH control socket.
  */
 export type SocketStatus = 'alive' | 'dead';
 
-/**
- Result of running a shell command.
- */
-interface ShellResult
-{
-  exitCode: number;
-  stdout: string;
-  stderr: string;
-}
-
 export type SSHCheckSocketFailure =
   | 'SocketNotFound'
   | 'UnknownError';
-
-/**
- Run a command and capture its output. Cross-runtime compatible.
- */
-function runCommand(command: string, args: readonly string[]): Promise<ShellResult>
-{
-  return new Promise((resolve) =>
-  {
-    const proc = spawn(command, args, { stdio: ['ignore', 'pipe', 'pipe'] });
-
-    const stdoutChunks: Buffer[] = [];
-    const stderrChunks: Buffer[] = [];
-
-    proc.stdout.on('data', (chunk: Buffer) => stdoutChunks.push(chunk));
-    proc.stderr.on('data', (chunk: Buffer) => stderrChunks.push(chunk));
-
-    proc.on('close', (code) =>
-    {
-      resolve({
-        exitCode: code ?? 1,
-        stdout: Buffer.concat(stdoutChunks).toString(),
-        stderr: Buffer.concat(stderrChunks).toString(),
-      });
-    });
-
-    proc.on('error', (err) =>
-    {
-      resolve({
-        exitCode: 1,
-        stdout: '',
-        stderr: err.message,
-      });
-    });
-  });
-}
 
 /**
  Check the health of an SSH control socket.

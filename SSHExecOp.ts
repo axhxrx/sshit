@@ -2,10 +2,11 @@
 import { Op } from '@axhxrx/ops';
 import type { Failure, IOContext, Success } from '@axhxrx/ops';
 import { Buffer } from 'node:buffer';
-import { spawn } from 'node:child_process';
 import { stat } from 'node:fs/promises';
 import process from 'node:process';
 import { parseArgs } from 'node:util';
+
+import { runCommandBuffers } from './sshit-internals.ts';
 
 /**
  Result of executing a remote SSH command.
@@ -20,57 +21,12 @@ export interface ExecResult
   stderrBuffer: Buffer;
 }
 
-/**
- Result of running a shell command (internal, keeps raw buffers).
- */
-interface ShellResult
-{
-  exitCode: number;
-  stdoutBuffer: Buffer;
-  stderrBuffer: Buffer;
-}
-
 export type SSHExecFailure =
   | 'SocketNotFound'
   | 'SocketDead'
   | 'ConnectionFailed'
   | 'Timeout'
   | 'UnknownError';
-
-/**
- Run a command and capture its output as raw Buffers. Cross-runtime compatible.
- */
-function runCommand(command: string, args: readonly string[]): Promise<ShellResult>
-{
-  return new Promise((resolve) =>
-  {
-    const proc = spawn(command, args, { stdio: ['ignore', 'pipe', 'pipe'] });
-
-    const stdoutChunks: Buffer[] = [];
-    const stderrChunks: Buffer[] = [];
-
-    proc.stdout.on('data', (chunk: Buffer) => stdoutChunks.push(chunk));
-    proc.stderr.on('data', (chunk: Buffer) => stderrChunks.push(chunk));
-
-    proc.on('close', (code) =>
-    {
-      resolve({
-        exitCode: code ?? 1,
-        stdoutBuffer: Buffer.concat(stdoutChunks),
-        stderrBuffer: Buffer.concat(stderrChunks),
-      });
-    });
-
-    proc.on('error', (err) =>
-    {
-      resolve({
-        exitCode: 1,
-        stdoutBuffer: Buffer.alloc(0),
-        stderrBuffer: Buffer.from(err.message),
-      });
-    });
-  });
-}
 
 /**
  Execute a command on a remote host via an existing SSH control socket.
@@ -135,7 +91,7 @@ export class SSHExecOp extends Op
 
       this.log(io, `Executing on ${this.host} via ${this.socketPath}: ${this.command}`);
 
-      const result = await runCommand('ssh', [
+      const result = await runCommandBuffers('ssh', [
         '-S',
         this.socketPath,
         '-o',
