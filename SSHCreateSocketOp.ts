@@ -105,6 +105,11 @@ export class SSHCreateSocketOp extends Op
       const stderr = result.stderr;
       this.error(io, `SSH failed with exit code ${result.exitCode}: ${stderr}`);
 
+      // Note: More specific patterns must be checked before generic ones
+      if (stderr.includes('Permission denied (publickey'))
+      {
+        return this.fail('PermissionDenied', stderr);
+      }
       if (stderr.includes('Permission denied') || stderr.includes('Authentication failed'))
       {
         return this.fail('AuthenticationFailed', stderr);
@@ -124,10 +129,6 @@ export class SSHCreateSocketOp extends Op
       if (stderr.includes('Operation timed out') || stderr.includes('Connection timed out'))
       {
         return this.fail('Timeout', stderr);
-      }
-      if (stderr.includes('Permission denied (publickey'))
-      {
-        return this.fail('PermissionDenied', stderr);
       }
 
       return this.fail('UnknownError', `Exit code ${result.exitCode}: ${stderr}`);
